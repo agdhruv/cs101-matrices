@@ -44,8 +44,32 @@ class twoBytwo(Matrix):
 		adj[2][1] = -adj[2][1]/float(det)
 		return Matrix(adj,2)
 
+class threeBythree(Matrix):
 
-order = 2
+	def determinant(self):
+		B = self.A
+		ans = 0
+
+		for x in range(1,4):
+			z = []
+
+			for i in range(2,4):
+				for j in range(1,4):
+					if j==x:
+						pass
+					else:
+						z.append(B[i][j])
+			Z = [None,[None,z[0], z[1]], [None,z[2], z[3]]]
+			twoBytwoSub = twoBytwo(copy.deepcopy(Z),2)
+			subDeterminant = twoBytwoSub.determinant()
+			if x%2==0:
+				ans += -B[1][x] * subDeterminant
+			else:
+				ans += B[1][x] * subDeterminant
+		return ans
+
+
+order = 3
 
 if order == 2:
 	a11 = 1
@@ -55,6 +79,21 @@ if order == 2:
 	A = [None,[None,a11, a12], [None,a21, a22]]
 	our_matrix = twoBytwo(copy.deepcopy(A),order)
 	x = our_matrix.inverse()
+	print x
+
+if order == 3:
+	a11 = 1
+	a12 = 2
+	a13 = 3
+	a21 = 4
+	a22 = 5
+	a23 = 6
+	a31 = 7
+	a32 = 8
+	a33 = 9
+	A = [None,[None,a11, a12, a13], [None,a21, a22, a23], [None,a31, a32, a33]]
+	matrixA = threeBythree(copy.deepcopy(A),order)
+	x = matrixA.determinant()
 	print x
 
 
