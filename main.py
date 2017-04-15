@@ -79,26 +79,42 @@ class threeBythree(Matrix):
 
 	def inverse(self):
 		B = self.A
-		minors = copy.deepcopy(self.A)
+		cofactors = copy.deepcopy(self.A)
+		coFactorElem = 0
 
 		for x in range(1,4):
-			for y in range(1,4)
+			for y in range(1,4):
 				z = []
 
 				for i in range(1,4):
 					for j in range(1,4):
-						if (x==i) or (y==j) :
+						if (x==i) or (y==j):
 							pass
 						else:
 							z.append(B[i][j])
 				Z = [None,[None,z[0], z[1]], [None,z[2], z[3]]]
 				twoBytwoSub = twoBytwo(copy.deepcopy(Z),2)
 				subDeterminant = twoBytwoSub.determinant()
-				if y%2==0:
-					ans = -1 * subDeterminant
+				
+				if ((x+y)%2 == 0):
+					coFactorElem = subDeterminant
 				else:
-					ans = subDeterminant
+					coFactorElem = -1 * subDeterminant
 
+				cofactors[x][y] = coFactorElem
+
+		cofactorsMatrix = threeBythree(cofactors,3)
+		adjoint = cofactorsMatrix.transpose()
+
+		mainDeterminant = self.determinant()
+
+		if mainDeterminant == 0:
+			return "Inverse does not exist."
+		else:
+			for i in range(1,4):
+				for j in range(1,4):
+					adjoint.A[i][j] = adjoint.A[i][j]/float(mainDeterminant)
+			return adjoint
 
 
 order = 3
@@ -120,24 +136,10 @@ if order == 3:
 	a21 = 4
 	a22 = 5
 	a23 = 6
-	a31 = 7
+	a31 = 8
 	a32 = 8
 	a33 = 9
 	A = [None,[None,a11, a12, a13], [None,a21, a22, a23], [None,a31, a32, a33]]
 	matrixA = threeBythree(copy.deepcopy(A),order)
-	x = matrixA.determinant()
+	x = matrixA.inverse()
 	print x
-
-
-# sinha's comment
-
-
-
-
-
-
-
-
-
-
-
