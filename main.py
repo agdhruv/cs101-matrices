@@ -27,6 +27,16 @@ class Matrix(object):
 
 		return Matrix(inverted,self.order)
 
+	def multiply(self,other):
+		multi = copy.deepcopy(self.A)
+
+		for i in range(1,self.order+1):
+			for j in range(1,self.order+1):
+				for k in range(1,self.order+1):
+					multi[i][j] += self.A[i][k]*other.A[k][j]
+				multi[i][j] = multi[i][j]-self.A[i][j]
+		return Matrix(multi,self.order)
+
 
 class twoBytwo(Matrix):
 
@@ -49,7 +59,6 @@ class threeBythree(Matrix):
 	def determinant(self):
 		B = self.A
 		ans = 0
-
 		for x in range(1,4):
 			z = []
 
@@ -67,6 +76,29 @@ class threeBythree(Matrix):
 			else:
 				ans += B[1][x] * subDeterminant
 		return ans
+
+	def inverse(self):
+		B = self.A
+		minors = copy.deepcopy(self.A)
+
+		for x in range(1,4):
+			for y in range(1,4)
+				z = []
+
+				for i in range(1,4):
+					for j in range(1,4):
+						if (x==i) or (y==j) :
+							pass
+						else:
+							z.append(B[i][j])
+				Z = [None,[None,z[0], z[1]], [None,z[2], z[3]]]
+				twoBytwoSub = twoBytwo(copy.deepcopy(Z),2)
+				subDeterminant = twoBytwoSub.determinant()
+				if y%2==0:
+					ans = -1 * subDeterminant
+				else:
+					ans = subDeterminant
+
 
 
 order = 3
