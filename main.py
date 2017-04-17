@@ -1,4 +1,4 @@
-import math
+# import math
 import copy # for deep copy
 
 class Matrix(object):
@@ -21,8 +21,8 @@ class Matrix(object):
 
 	def transpose(self):
 		inverted = copy.deepcopy(self.A)
-		for i in range(1,order+1):
-			for j in range(1,order+1):
+		for i in range(1,self.order+1):
+			for j in range(1,self.order+1):
 				inverted[j][i] = self.A[i][j]
 
 		return Matrix(inverted,self.order)
@@ -33,7 +33,7 @@ class Matrix(object):
 		for i in range(1,self.order+1):
 			for j in range(1,self.order+1):
 				for k in range(1,self.order+1):
-					multi[i][j] += self.A[i][k]*other.A[k][j]
+					multi[i][j] += self.A[i][k] * other.A[k][j]
 				multi[i][j] = multi[i][j]-self.A[i][j]
 		return Matrix(multi,self.order)
 
@@ -59,15 +59,16 @@ class threeBythree(Matrix):
 	def determinant(self):
 		B = self.A
 		ans = 0
-		for x in range(1,4):
+		for x in range(1,self.order+1):
 			z = []
 
-			for i in range(2,4):
-				for j in range(1,4):
+			for i in range(2,self.order+1):
+				for j in range(1,self.order+1):
 					if j==x:
 						pass
 					else:
 						z.append(B[i][j])
+
 			Z = [None,[None,z[0], z[1]], [None,z[2], z[3]]]
 			twoBytwoSub = twoBytwo(copy.deepcopy(Z),2)
 			subDeterminant = twoBytwoSub.determinant()
@@ -81,6 +82,11 @@ class threeBythree(Matrix):
 		B = self.A
 		cofactors = copy.deepcopy(self.A)
 		coFactorElem = 0
+
+		mainDeterminant = self.determinant()
+
+		if mainDeterminant == 0:
+			return "Inverse does not exist."
 
 		for x in range(1,4):
 			for y in range(1,4):
@@ -106,15 +112,10 @@ class threeBythree(Matrix):
 		cofactorsMatrix = threeBythree(cofactors,3)
 		adjoint = cofactorsMatrix.transpose()
 
-		mainDeterminant = self.determinant()
-
-		if mainDeterminant == 0:
-			return "Inverse does not exist."
-		else:
-			for i in range(1,4):
-				for j in range(1,4):
-					adjoint.A[i][j] = adjoint.A[i][j]/float(mainDeterminant)
-			return adjoint
+		for i in range(1,4):
+			for j in range(1,4):
+				adjoint.A[i][j] = round(adjoint.A[i][j]/float(mainDeterminant),3)
+		return adjoint
 
 
 order = 3
@@ -131,15 +132,17 @@ if order == 2:
 
 if order == 3:
 	a11 = 1
-	a12 = 2
-	a13 = 3
-	a21 = 4
-	a22 = 5
-	a23 = 6
-	a31 = 8
-	a32 = 8
-	a33 = 9
+	a12 = 7
+	a13 = 1
+	a21 = 2
+	a22 = 3
+	a23 = 2
+	a31 = 1
+	a32 = 2
+	a33 = 2
 	A = [None,[None,a11, a12, a13], [None,a21, a22, a23], [None,a31, a32, a33]]
 	matrixA = threeBythree(copy.deepcopy(A),order)
-	x = matrixA.inverse()
+	x = matrixA.determinant()
 	print x
+
+# eigen value decomposition
