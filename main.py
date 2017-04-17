@@ -47,6 +47,10 @@ class twoBytwo(Matrix):
 
 	def inverse(self):
 		det = self.determinant()
+
+		if det == 0:
+			return "Inverse does not exist."
+
 		adj = copy.deepcopy(self.A)
 		adj[1][1] = self.A[2][2]/float(det)
 		adj[2][2] = self.A[1][1]/float(det)
