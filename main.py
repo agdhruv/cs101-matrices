@@ -142,11 +142,11 @@ if __name__ == '__main__':
 		a22 = 5
 		a23 = 6
 		a31 = 7
-		a32 = 8
+		a32 = 6
 		a33 = 8
 		A = [None,[None,a11, a12, a13], [None,a21, a22, a23], [None,a31, a32, a33]]
 		matrixA = threeBythree(copy.deepcopy(A),order)
-		x = matrixA.inverse()
+		x = matrixA.determinant()
 		print x
 
 	# eigen value decomposition

@@ -26,14 +26,14 @@
 		</table>
 		<input type="submit" value="Submit">
 	</form>
-	<p class="ans">{{ x }}</p>
+	<p class="ans"></p>
 
 	<script>
 		$("form").on("submit",function(e){
 			e.preventDefault();
 			var data = $(this).serialize();
 			$.post("/", data, function(response){
-				console.log(response);
+				$("p.ans").html("Determinant = " + response)
 			});
 		});
 	</script>

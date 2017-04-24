@@ -19,10 +19,9 @@ def index():
 		a33 = int(request.form["a33"])
 		A = [None,[None,a11, a12, a13], [None,a21, a22, a23], [None,a31, a32, a33]]
 		matrixA = threeBythree(copy.deepcopy(A),3)
-		x = matrixA.inverse()
+		x = matrixA.determinant()
 
-		# return str(x)
-		return render_template("index.html", x=x)
+		return str(x)
 
 	except Exception, e:
 		return str(e)
