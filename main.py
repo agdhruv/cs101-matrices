@@ -121,32 +121,32 @@ class threeBythree(Matrix):
 				adjoint.A[i][j] = round(adjoint.A[i][j]/float(mainDeterminant),3)
 		return adjoint
 
+if __name__ == '__main__':
+	order = 3
 
-order = 3
+	if order == 2:
+		a11 = 1
+		a12 = 2
+		a21 = 3
+		a22 = 4
+		A = [None,[None,a11, a12], [None,a21, a22]]
+		our_matrix = twoBytwo(copy.deepcopy(A),order)
+		x = our_matrix.inverse()
+		print x
 
-if order == 2:
-	a11 = 1
-	a12 = 2
-	a21 = 3
-	a22 = 4
-	A = [None,[None,a11, a12], [None,a21, a22]]
-	our_matrix = twoBytwo(copy.deepcopy(A),order)
-	x = our_matrix.inverse()
-	print x
+	if order == 3:
+		a11 = 1
+		a12 = 2
+		a13 = 3
+		a21 = 4
+		a22 = 5
+		a23 = 6
+		a31 = 7
+		a32 = 8
+		a33 = 8
+		A = [None,[None,a11, a12, a13], [None,a21, a22, a23], [None,a31, a32, a33]]
+		matrixA = threeBythree(copy.deepcopy(A),order)
+		x = matrixA.inverse()
+		print x
 
-if order == 3:
-	a11 = 1
-	a12 = 7
-	a13 = 1
-	a21 = 2
-	a22 = 3
-	a23 = 2
-	a31 = 1
-	a32 = 2
-	a33 = 2
-	A = [None,[None,a11, a12, a13], [None,a21, a22, a23], [None,a31, a32, a33]]
-	matrixA = threeBythree(copy.deepcopy(A),order)
-	x = matrixA.determinant()
-	print x
-
-# eigen value decomposition
+	# eigen value decomposition
