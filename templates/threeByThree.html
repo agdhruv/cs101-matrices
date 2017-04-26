@@ -12,19 +12,19 @@
 		<form id="input_matrix">
 			<table>
 				<tr>
-					<td><input type="text" name="a11"></td>
-					<td><input type="text" name="a12"></td>
-					<td><input type="text" name="a13"></td>
+					<td><input type="number" name="a11"></td>
+					<td><input type="number" name="a12"></td>
+					<td><input type="number" name="a13"></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="a21"></td>
-					<td><input type="text" name="a22"></td>
-					<td><input type="text" name="a23"></td>
+					<td><input type="number" name="a21"></td>
+					<td><input type="number" name="a22"></td>
+					<td><input type="number" name="a23"></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="a31"></td>
-					<td><input type="text" name="a32"></td>
-					<td><input type="text" name="a33"></td>
+					<td><input type="number" name="a31"></td>
+					<td><input type="number" name="a32"></td>
+					<td><input type="number" name="a33"></td>
 				</tr>
 			</table>
 			<input type="submit" value="Calculate!">
@@ -52,6 +52,10 @@
 					$(".answers .inverse").html("<h2>Inverse</h2>" + inverse)
 				}
 			});
+		});
+		$("input[type=reset]").click(function(e){
+			e.preventDefault()
+			location.reload()
 		});
 	</script>
 </body>

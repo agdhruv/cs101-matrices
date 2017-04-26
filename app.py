@@ -31,11 +31,11 @@ def api_twoByTwo():
 		A = [None,[None,a11, a12], [None,a21, a22]]
 		matrixA = twoBytwo(copy.deepcopy(A),2)
 		returned_determinant = matrixA.determinant()
-		returned_transpose = matrixA.transpose()
+		returned_transpose = str(matrixA.transpose())
 		if returned_determinant == 0:
-			returned_inverse = -1
+			returned_inverse = "Inverse does not exist."
 		else:
-			returned_inverse = matrixA.inverse()
+			returned_inverse = str(matrixA.inverse())
 		return jsonify(returned_determinant, returned_transpose, returned_inverse)
 	except Exception, e:
 		return str(e)
