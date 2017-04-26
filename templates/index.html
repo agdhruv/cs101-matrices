@@ -3,39 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Matrices Calculator | Home</title>
-	<script src="{{ url_for('static', filename='jquery.js') }}"></script>
 </head>
 <body>
-	<form action="/" method="POST">
-		<table>
-			<tr>
-				<td><input type="text" name="a11"></td>
-				<td><input type="text" name="a12"></td>
-				<td><input type="text" name="a13"></td>
-			</tr>
-			<tr>
-				<td><input type="text" name="a21"></td>
-				<td><input type="text" name="a22"></td>
-				<td><input type="text" name="a23"></td>
-			</tr>
-			<tr>
-				<td><input type="text" name="a31"></td>
-				<td><input type="text" name="a32"></td>
-				<td><input type="text" name="a33"></td>
-			</tr>
-		</table>
-		<input type="submit" value="Submit">
-	</form>
-	<p class="ans"></p>
-
-	<script>
-		$("form").on("submit",function(e){
-			e.preventDefault();
-			var data = $(this).serialize();
-			$.post("/", data, function(response){
-				$("p.ans").html("Determinant = " + response)
-			});
-		});
-	</script>
+	<a href="/twoByTwo/">2 by 2 matrices</a>
+	<a href="/threeByThree">3 by 3 matrices</a>
 </body>
 </html>

@@ -1,4 +1,3 @@
-# import math
 import copy # for deep copy
 
 class Matrix(object):
@@ -9,14 +8,17 @@ class Matrix(object):
 
 
 	def __str__(self):
-		returned_string = ''
+		returned_string = "<table>"
 
 		for i in range(1,self.order+1):
+			returned_string += "<tr>"
 			for j in range(1,self.order+1):
-				returned_string += str(self.A[i][j]) + " "
-			returned_string += "\n"
+				returned_string += "<td>" + str(self.A[i][j]) + "</td>"
+			returned_string += "</tr>"
 
-		return returned_string.strip()
+		returned_string += '</table>'
+
+		return returned_string
 
 
 	def transpose(self):
@@ -26,6 +28,7 @@ class Matrix(object):
 				inverted[j][i] = self.A[i][j]
 
 		return Matrix(inverted,self.order)
+
 
 	def multiply(self,other):
 		multi = copy.deepcopy(self.A)
@@ -52,10 +55,10 @@ class twoBytwo(Matrix):
 			return "Inverse does not exist."
 
 		adj = copy.deepcopy(self.A)
-		adj[1][1] = self.A[2][2]/float(det)
-		adj[2][2] = self.A[1][1]/float(det)
-		adj[1][2] = -adj[1][2]/float(det)
-		adj[2][1] = -adj[2][1]/float(det)
+		adj[1][1] = round(self.A[2][2]/float(det),3)
+		adj[2][2] = round(self.A[1][1]/float(det),3)
+		adj[1][2] = round(-adj[1][2]/float(det),3)
+		adj[2][1] = round(-adj[2][1]/float(det),3)
 		return Matrix(adj,2)
 
 class threeBythree(Matrix):
@@ -122,7 +125,7 @@ class threeBythree(Matrix):
 		return adjoint
 
 if __name__ == '__main__':
-	order = 3
+	order = 2
 
 	if order == 2:
 		a11 = 1
@@ -146,7 +149,7 @@ if __name__ == '__main__':
 		a33 = 8
 		A = [None,[None,a11, a12, a13], [None,a21, a22, a23], [None,a31, a32, a33]]
 		matrixA = threeBythree(copy.deepcopy(A),order)
-		x = matrixA.determinant()
+		x = matrixA.inverse()
 		print x
 
 	# eigen value decomposition
