@@ -151,5 +151,3 @@ if __name__ == '__main__':
 		matrixA = threeBythree(copy.deepcopy(A),order)
 		x = matrixA.inverse()
 		print x
-
-	# eigen value decomposition
