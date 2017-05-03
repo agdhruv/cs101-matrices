@@ -1,4 +1,4 @@
-import copy # for deep copy
+import copy # for deepcopy
 
 class Matrix(object):
 
