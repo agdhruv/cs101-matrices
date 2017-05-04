@@ -1,14 +1,14 @@
 import copy # for deepcopy
 
-class Matrix(object):
+class Matrix(object): '''this is the main class which has fuction of transpose and multiply'''
 
 	def __init__(self,A,order):
 		self.A = copy.deepcopy(A)
 		self.order = order
 
 
-	def __str__(self):
-		returned_string = "<table>"
+	def __str__(self): # this will print the numbers in the form of a matrix
+		returned_string = "<table>" # table is for html
 
 		for i in range(1,self.order+1):
 			returned_string += "<tr>"
@@ -21,7 +21,7 @@ class Matrix(object):
 		return returned_string
 
 
-	def transpose(self):
+	def transpose(self): #will return the transpose of 2*2 and 3*3 matrix
 		inverted = copy.deepcopy(self.A)
 		for i in range(1,self.order+1):
 			for j in range(1,self.order+1):
@@ -30,7 +30,7 @@ class Matrix(object):
 		return Matrix(inverted,self.order)
 
 
-	def multiply(self,other):
+	def multiply(self,other):  # this will return the multiplication or square of two matrices
 		multi = copy.deepcopy(self.A)
 
 		for i in range(1,self.order+1):
@@ -41,8 +41,8 @@ class Matrix(object):
 		return Matrix(multi,self.order)
 
 
-class twoBytwo(Matrix):
-
+class twoBytwo(Matrix): # this sub-class is specific to 2*2 matrix
+# we have inheritet the initialization functiom from the main class
 	def determinant(self):
 		B = self.A
 		ans = (B[1][1] * B[2][2]) - (B[2][1] * B[1][2])
@@ -61,9 +61,10 @@ class twoBytwo(Matrix):
 		adj[2][1] = round(-adj[2][1]/float(det),3)
 		return Matrix(adj,2)
 
-class threeBythree(Matrix):
+class threeBythree(Matrix):# this sub-class is specific to 3*3 matrix
+# we have inheritet the initialization functiom from the main class
 
-	def determinant(self):
+	def determinant(self): 
 		B = self.A
 		ans = 0
 		for x in range(1,self.order+1):
@@ -85,7 +86,7 @@ class threeBythree(Matrix):
 				ans += B[1][x] * subDeterminant
 		return ans
 
-	def inverse(self):
+	def inverse(self): 
 		B = self.A
 		cofactors = copy.deepcopy(self.A)
 		coFactorElem = 0
@@ -133,7 +134,7 @@ if __name__ == '__main__':
 		a21 = 3
 		a22 = 4
 		A = [None,[None,a11, a12], [None,a21, a22]]
-		our_matrix = twoBytwo(copy.deepcopy(A),order)
+		our_matrix = twoBytwo(copy.deepcopy(A),order) 
 		x = our_matrix.inverse()
 		print x
 
