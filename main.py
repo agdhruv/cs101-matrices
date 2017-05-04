@@ -1,14 +1,18 @@
-import copy # for deepcopy
+import copy # for deepcopy function
 
-class Matrix(object): '''this is the main class which has fuction of transpose and multiply'''
+class Matrix(object):
+	'''This is the main class for all 2x2 and 3x3 matrices.
+	It contains all functions that can be used commonly for both the types of matrices that we deal with in this project.
+	It serves as the parent class for the classes: twoBytwo and threeBythree.
+	'''
 
 	def __init__(self,A,order):
 		self.A = copy.deepcopy(A)
 		self.order = order
 
 
-	def __str__(self): # this will print the numbers in the form of a matrix
-		returned_string = "<table>" # table is for html
+	def __str__(self): # this overides the str function and prints the numbers in the form of a matrix (in our case, it returns HTML to facilitate printing on the webpage)
+		returned_string = "<table>"
 
 		for i in range(1,self.order+1):
 			returned_string += "<tr>"
@@ -21,7 +25,7 @@ class Matrix(object): '''this is the main class which has fuction of transpose a
 		return returned_string
 
 
-	def transpose(self): #will return the transpose of 2*2 and 3*3 matrix
+	def transpose(self): # returns the transpose of 2x2 and 3x3 matrix depending on the order of the Matrix object
 		inverted = copy.deepcopy(self.A)
 		for i in range(1,self.order+1):
 			for j in range(1,self.order+1):
@@ -30,7 +34,7 @@ class Matrix(object): '''this is the main class which has fuction of transpose a
 		return Matrix(inverted,self.order)
 
 
-	def multiply(self,other):  # this will return the multiplication or square of two matrices
+	def multiply(self,other): # returns the multiplication of two square matrices of the same order
 		multi = copy.deepcopy(self.A)
 
 		for i in range(1,self.order+1):
@@ -41,14 +45,18 @@ class Matrix(object): '''this is the main class which has fuction of transpose a
 		return Matrix(multi,self.order)
 
 
-class twoBytwo(Matrix): # this sub-class is specific to 2*2 matrix
-# we have inheritet the initialization functiom from the main class
-	def determinant(self):
+class twoBytwo(Matrix):
+	''' This is a sub-class of the Matrix class and is specific to 2x2 matrices.
+	We use the OOP concept of inheritance to inherit the initialization, str, transpose and multiply functions from the main class.
+	This class mainly defines the determinant and inverse functions for 2x2 matrices.
+	'''
+
+	def determinant(self): # returns the determinant of the 2x2 matrix represented by the current object
 		B = self.A
 		ans = (B[1][1] * B[2][2]) - (B[2][1] * B[1][2])
 		return ans
 
-	def inverse(self):
+	def inverse(self): # returns the inverse of a 2x2 object if it exists, or informs the user in case the determinant does not exist
 		det = self.determinant()
 
 		if det == 0:
@@ -61,10 +69,14 @@ class twoBytwo(Matrix): # this sub-class is specific to 2*2 matrix
 		adj[2][1] = round(-adj[2][1]/float(det),3)
 		return Matrix(adj,2)
 
-class threeBythree(Matrix):# this sub-class is specific to 3*3 matrix
-# we have inheritet the initialization functiom from the main class
 
-	def determinant(self): 
+class threeBythree(Matrix):
+	''' This is a sub-class of the Matrix class and is specific to 3x3 matrices.
+	We use the OOP concept of inheritance to inherit the initialization, str, transpose and multiply functions from the main class.
+	This class mainly defines the determinant and inverse functions for 3x3 matrices.
+	'''
+
+	def determinant(self): # returns the determinant of the 3x3 matrix represented by the current object
 		B = self.A
 		ans = 0
 		for x in range(1,self.order+1):
@@ -86,7 +98,8 @@ class threeBythree(Matrix):# this sub-class is specific to 3*3 matrix
 				ans += B[1][x] * subDeterminant
 		return ans
 
-	def inverse(self): 
+
+	def inverse(self): # returns the inverse of a 3x3 object if it exists, or informs the user in case the determinant does not exist
 		B = self.A
 		cofactors = copy.deepcopy(self.A)
 		coFactorElem = 0
@@ -125,7 +138,8 @@ class threeBythree(Matrix):# this sub-class is specific to 3*3 matrix
 				adjoint.A[i][j] = round(adjoint.A[i][j]/float(mainDeterminant),3)
 		return adjoint
 
-if __name__ == '__main__':
+
+if __name__ == '__main__': # the following code is only for testing purposes...this module is imported into app.py for its main use.
 	order = 2
 
 	if order == 2:
