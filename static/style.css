@@ -1,0 +1,11 @@
+.answers table{
+	border-collapse: collapse;
+}
+
+.answers table, .answers td{
+	border: 1px solid black;
+}
+
+.answers td{
+	padding: 2px;
+}

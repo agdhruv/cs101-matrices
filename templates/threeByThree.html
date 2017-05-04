@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>3&cross;3 Matrix</title>
 	<script src="{{ url_for('static', filename='jquery.js') }}"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 	<div class="input">
@@ -30,53 +31,14 @@
 			<input type="submit" value="Calculate!">
 			<input type="reset" value="Reset">
 		</form>
-
-		<div class="answers">
-			<p class="determinant"></p>
-			<p class="transpose"></p>
-			<p class="inverse"></p>
-		</div>
+		<p class="error"></p>
+	</div>
+	<div class="answers">
+		<p class="determinant"></p>
+		<p class="transpose"></p>
+		<p class="inverse"></p>
 	</div>
 
-	<script>
-		$("#input_matrix").on("submit", function(e){
-			e.preventDefault()
-			valid = true
-			for (var i = 1; i < 4; i++) {
-				for (var j = 1; j < 4; j++) {
-					elem = $("#input_matrix input[name=a" + i + j + "]")
-					console.log(elem.val())
-					if(elem.val()== ''){
-						valid = false
-						break
-					}
-				}
-			}
-			if(valid){
-				data = $(this).serialize()
-				$.post("/api/threeByThree", data, function(response){
-					if(response){
-						determinant = response[0]
-						transpose = response[1]
-						inverse = response[2]
-						$(".answers .determinant").html("<h2>Determinant</h2>" + determinant)
-						$(".answers .transpose").html("<h2>Transpose</h2>" + transpose)
-						$(".answers .inverse").html("<h2>Inverse</h2>" + inverse)
-						$("p.error").html("")
-					}
-				});
-			}
-			else{
-				$("p.error").html("Please fill in all values.");
-				$(".answers .determinant").html("")
-				$(".answers .transpose").html("")
-				$(".answers .inverse").html("")
-			}
-		});
-		$("input[type=reset]").click(function(e){
-			e.preventDefault()
-			location.reload()
-		});
-	</script>
+	<script src="{{ url_for('static', filename='threeByThree.js') }}"></script>
 </body>
 </html>
