@@ -1,6 +1,6 @@
 # cs101-matrices
 
-This is a calculator for operations on 2x2 and 3x3 matrices. It calculates the **determinant**, **transpose** and **inverse** of these matrices, and displays them on the relevant webpage.
+This is a calculator for operations on 2x2 and 3x3 matrices. It calculates the **determinant**, **transpose**, **inverse** and **square** of these matrices, and displays them on the relevant webpage.
 
 This calculator has been developed by [Dhruv Sinha](https://github.com/dhruvsinha) and [Dhruv Agarwal](https://github.com/agdhruv) as a `Flask` webapp as part of our CS101 end-term project under the MIT License.
 

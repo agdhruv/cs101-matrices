@@ -32,12 +32,13 @@ def api_twoByTwo():
 		A = [None,[None,a11, a12], [None,a21, a22]]
 		matrixA = twoBytwo(copy.deepcopy(A),2)
 		returned_determinant = matrixA.determinant()
+		returned_square = str(matrixA.multiply(matrixA))
 		returned_transpose = str(matrixA.transpose())
 		if returned_determinant == 0:
 			returned_inverse = "Inverse does not exist."
 		else:
 			returned_inverse = str(matrixA.inverse())
-		return jsonify(returned_determinant, returned_transpose, returned_inverse)
+		return jsonify(returned_determinant, returned_transpose, returned_inverse, returned_square)
 	except Exception, e:
 		return str(e)
 
@@ -60,15 +61,16 @@ def api_threeByThree():
 		A = [None,[None,a11, a12, a13], [None,a21, a22, a23], [None,a31, a32, a33]]
 		matrixA = threeBythree(copy.deepcopy(A),3)
 		returned_determinant = matrixA.determinant()
+		returned_square = str(matrixA.multiply(matrixA))
 		returned_transpose = str(matrixA.transpose())
 		if returned_determinant == 0:
 			returned_inverse = "Inverse does not exist."
 		else:
 			returned_inverse = str(matrixA.inverse())
-		return jsonify(returned_determinant, returned_transpose, returned_inverse)
+		return jsonify(returned_determinant, returned_transpose, returned_inverse, returned_square)
 	except Exception, e:
 		return "Error: " + str(e)
 
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run()

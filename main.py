@@ -11,7 +11,7 @@ class Matrix(object):
 		self.order = order
 
 
-	def __str__(self): # this overides the str function and prints the numbers in the form of a matrix (in our case, it returns HTML to facilitate printing on the webpage)
+	def __str__(self): # overides the str function and prints the numbers in the form of a matrix (in our case, it returns HTML to facilitate printing on the webpage)
 		returned_string = "<table>"
 
 		for i in range(1,self.order+1):
@@ -139,7 +139,7 @@ class threeBythree(Matrix):
 		return adjoint
 
 
-if __name__ == '__main__': # the following code is only for testing purposes...this module is imported into app.py for its main use.
+if __name__ == '__main__': # the following code is only for testing purposes...this module is imported into app.py for its main use in the webapp.
 	order = 2
 
 	if order == 2:

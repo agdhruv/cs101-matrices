@@ -17,9 +17,11 @@ $("#input_matrix").on("submit", function(e){
 				determinant = response[0]
 				transpose = response[1]
 				inverse = response[2]
+				square = response[3]
 				$(".answers .determinant").html("<h2>Determinant</h2>" + determinant)
 				$(".answers .transpose").html("<h2>Transpose</h2>" + transpose)
 				$(".answers .inverse").html("<h2>Inverse</h2>" + inverse)
+				$(".answers .square").html("<h2>Square</h2>" + square)
 				$("p.error").html("")
 			}
 		});
@@ -29,6 +31,7 @@ $("#input_matrix").on("submit", function(e){
 		$(".answers .determinant").html("")
 		$(".answers .transpose").html("")
 		$(".answers .inverse").html("")
+		$(".answers .square").html("")
 	}
 });
 
