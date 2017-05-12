@@ -39,6 +39,7 @@ def api_twoByTwo():
 		else:
 			returned_inverse = str(matrixA.inverse())
 		return jsonify(returned_determinant, returned_transpose, returned_inverse, returned_square)
+		
 	except Exception, e:
 		return str(e)
 
