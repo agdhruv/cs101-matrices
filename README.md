@@ -22,5 +22,5 @@ The following commands (in this order) need to be executed to make this run:
 1. Run `$ git clone https://github.com/agdhruv/cs101-matrices.git`.
 2. Create a virtual environment using `$ virtualenv <name of environment>` with **python 2.7**.
 3. Run the virtual environment using `$ source <name of environment>/bin/activate`.
-4. Run `$ pip install -r requirements.txt` to install all required packages.
+4. Run `$ pip install -r requirements.txt` to install all required packages. You might have to use `sudo`.
 5. Run `$ python app.py`.
